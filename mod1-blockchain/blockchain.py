@@ -11,6 +11,7 @@ import hashlib
 import json
 from flask import Flask, jsonify
 
+
 #Part 1: Create blockchain
 
 class Blockchain:
@@ -35,12 +36,15 @@ class Blockchain:
         check_proof = False
         while check_proof is False:
             hash_operation = hashlib.sha256(str(new_proof**2 - previous_proof**2).encode()).hexdigest()
-            if hash_operation[:4] = '0000':
+            if hash_operation[:4] == '0000':
                 check_proof = True
             else:
-                new_proof +=1
+                new_proof += 1
         return new_proof()
              
-    
+    def hash(self, block):
+        encoded_block = json.dumps(block, sort_keys = True).encode()
+        return haslib.sha256(encoded_block).hexdigest()
+        
 #Part 2: Blockchain minning
 
